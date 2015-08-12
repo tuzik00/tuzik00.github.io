@@ -1,0 +1,21 @@
+.sidebar{
+    width: 100%;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.sidebar__line{
+    padding-top: 10px;
+}
+
+@media screen and (max-width: 960px) {
+    .sidebar{
+        width: 520px;
+        margin: 0 auto;
+        box-sizing: inherit;
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+}

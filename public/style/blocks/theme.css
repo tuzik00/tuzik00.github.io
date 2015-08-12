@@ -1,0 +1,40 @@
+.b-theme-green-bg {
+    color: #fff;
+    background: #45BE88;
+    background: -moz-linear-gradient(top, #56EAA8 0%, #45BE88 100%);
+    background: -webkit-linear-gradient(top, #56EAA8 0%, #45BE88 100%);
+    background: -o-linear-gradient(top, #56EAA8 0%, #45BE88 100%);
+    background: -ms-linear-gradient(top, #56EAA8 0%, #45BE88 100%);
+    background: linear-gradient(top, #56EAA8 0%, #45BE88 100%);
+}
+
+.b-theme-green-bg:hover {
+    background: #45BE88;
+    background: -moz-linear-gradient(top, #58edaa 0%, #42b380 100%);
+    background: -webkit-linear-gradient(top, #58edaa 0%, #42b380 100%);
+    background: -o-linear-gradient(top, #58edaa 0%, #42b380 100%);
+    background: -ms-linear-gradient(top, #58edaa 0%, #42b380 100%);
+    background: linear-gradient(top, #58edaa 0%, #42b380 100%);
+}
+
+.b-theme-green-button {
+    color: #fff;
+    background: #45BE88;
+    background: -moz-linear-gradient(top, #56EAA8 0%, #45BE88 100%);
+    background: -webkit-linear-gradient(top, #56EAA8 0%, #45BE88 100%);
+    background: -o-linear-gradient(top, #56EAA8 0%, #45BE88 100%);
+    background: -ms-linear-gradient(top, #56EAA8 0%, #45BE88 100%);
+    background: linear-gradient(top, #56EAA8 0%, #45BE88 100%);
+}
+
+.b-theme-green-button:hover {
+    background: -moz-linear-gradient(bottom, #56EAA8 0%, #45BE88 100%);
+    background: -webkit-linear-gradient(bottom, #56EAA8 0%, #45BE88 100%);
+    background: -o-linear-gradient(bottom, #56EAA8 0%, #45BE88 100%);
+    background: -ms-linear-gradient(bottom, #56EAA8 0%, #45BE88 100%);
+    background: linear-gradient(bottom, #56EAA8 0%, #45BE88 100%);
+}
+
+.b-theme-green-button:active{
+    box-shadow: #000000 0 0 15px -5px inset;
+}

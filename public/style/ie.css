@@ -1,0 +1,41 @@
+.content__item{
+    *zoom:1;
+    *display:inline !important;
+}
+
+.stats__item{
+    *zoom:1;
+    *display:inline !important;
+}
+
+.list__text{
+    float: left;
+    padding: 5px;
+}
+
+.list__button{
+    float: right;
+    height: 100%;
+}
+
+.input{
+    padding: 0;
+    height: auto;
+}
+
+.textarea{
+    padding: 0;
+    height: auto;
+}
+
+.form__row{
+    width: 397px;
+}
+
+.list{
+    width: auto;
+}
+
+.sidebar{
+    padding: 0;
+}

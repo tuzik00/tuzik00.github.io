@@ -1,0 +1,20 @@
+.form{
+
+}
+
+.form__row{
+    padding-top: 10px;
+}
+
+.form__message{
+    padding: 3px;
+    color: #E64F4F;
+}
+
+.form__elements{
+    width: 100%;
+}
+
+.form__elements2{
+    width: 49%;
+}
