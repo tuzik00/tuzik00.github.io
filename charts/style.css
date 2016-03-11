@@ -1,0 +1,66 @@
+.image-effect{
+    display: block;
+    position: relative;
+    border: 2px solid transparent;
+}
+
+.image-effect__item{
+    display: block;
+    position: absolute;
+}
+
+/*effects*/
+
+/*destroy*/
+
+.destroy_hover{
+    -webkit-transform: scale(0);
+    -ms-transform: scale(0);
+    transform:scale(0);
+    z-index: 10;
+    border-radius: 50px;
+    -webkit-transition: transform ease-out 0.5s, border-radius ease-out 0.5s;
+    -moz-transition: transform ease-out 0.5s, border-radius ease-out 0.5s;
+    -ms-transition: transform ease-out 0.5s, border-radius ease-out 0.5s;
+    -o-transition: transform ease-out 0.5s, border-radius ease-out 0.5s;
+    transition:transform ease-out 0.5s, border-radius ease-out 0.5s;
+}
+
+.destroy_blur{
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform:scale(1);
+    z-index: 0;
+    border-radius: 0;
+    -webkit-transition: transform ease-out 0.5s, border-radius ease-out 0.5s;
+    -moz-transition: transform ease-out 0.5s, border-radius ease-out 0.5s;
+    -ms-transition: transform ease-out 0.5s, border-radius ease-out 0.5s;
+    -o-transition: transform ease-out 0.5s, border-radius ease-out 0.5s;
+    transition:transform ease-out 0.5s, border-radius ease-out 0.5s;
+}
+
+/*rotate*/
+
+.rotate_hover{
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+    z-index: 10;
+    -webkit-transition: transform ease-out 0.5s;
+    -moz-transition: transform ease-out 0.5s;
+    -ms-transition: transform ease-out 0.5s;
+    -o-transition: transform ease-out 0.5s;;
+    transition:transform ease-out 0.5s;
+}
+
+.rotate_blur{
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+    z-index: 0;
+    -webkit-transition: transform ease-out 0.5s;
+    -moz-transition: transform ease-out 0.5s;
+    -ms-transition: transform ease-out 0.5s;
+    -o-transition: transform ease-out 0.5s;;
+    transition:transform ease-out 0.5s;
+}

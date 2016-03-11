@@ -1,0 +1,34 @@
+.page{
+    font-family: 'segoe ui light';
+    font-size: 16px;
+    clear: both;
+}
+
+.page__content{
+    width: 100%;
+    float: left;
+    margin-right: -400px;
+    box-sizing: border-box;
+}
+
+.page__sidebar{
+    width: 400px;
+    float: right;
+}
+
+@media screen and (max-width: 960px) {
+    .page__content{
+        float: none;
+        margin-right:0;
+        padding-right: 0;
+    }
+
+    .page__sidebar{
+        width: 100%;
+        float: none;
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+}

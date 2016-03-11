@@ -1,195 +1,229 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Charts</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width">
-        <link rel="stylesheet" href="dist/style.min.css">
-        <!--[if lt IE 8]><link rel="stylesheet" href="public/style/ie.css"> <![endif]-->
-        <script  data-main="dist/app.min.js" src="vendors/require.js"></script>
-    </head>
+<head>
+    <title>Charts</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
 
-    <body>
-        <div class="page">
-            <div class="page__content">
-                <div class="content">
-                    <div class="content__item">
-                        <div class="title title_theme-green">Гистограмма</div>
-                        <div class="content__wrap" id="gisto"></div>
-                    </div>
-                    <div class="content__item" >
-                        <div class="title title_theme-green">График</div>
-                        <div class="content__wrap" id="charts"></div>
-                    </div>
-                    <div class="content__item">
-                        <div class="title title_theme-green">Компании:</div>
-                        <div class="content__wrap" id="company"></div>
-                    </div>
-                </div>
+    <link rel="stylesheet" href="charts/public/style/ie.css">
+    <link rel="stylesheet" href="charts/dist/style.min.css">
+    <link rel="stylesheet" href="http://bootswatch.com/cerulean/bootstrap.css">
+
+    <script data-main="charts/dist/app.min.js" src="charts/vendors/require.js"></script>
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="index.html">График</a>
+                </li>
+                <li>
+                    <a href="disintegration.html">Распад</a>
+                </li>
+                <li>
+                    <a href="live.html">Живая природа</a>
+                </li>
+                <li>
+                    <a href="rotate.html">Поварот</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="page" style="margin: 50px 15px 0;">
+    <div class="page__content">
+        <div class="content">
+            <div class="content__item">
+                <div class="title title_theme-green">Гистограмма</div>
+                <div class="content__wrap" id="gisto"></div>
             </div>
-            <div class="page__sidebar">
-                <div class="sidebar">
-                    <div class="sidebar__line">
-                        <div class="title title_theme-green">Форма</div>
-                        <div class="content__wrap" id="form"></div>
-                    </div>
-                    <div class="sidebar__line" >
-                        <div class="title title_theme-green">Список записей</div>
-                        <div class="content__wrap" id="records"></div>
-                    </div>
-                    <div class="sidebar__line">
-                        <div class="title title_theme-green">Как работает?</div>
-                        <ol>
-                            <li>1. Добавить компанию</li>
-                            <li>2. Активировать компанию</li>
-                            <li>3. Ввести значение показателя</li>
-                        </ol>
-                    </div>
-                </div>
+            <div class="content__item">
+                <div class="title title_theme-green">График</div>
+                <div class="content__wrap" id="charts"></div>
+            </div>
+            <div class="content__item">
+                <div class="title title_theme-green">Компании:</div>
+                <div class="content__wrap" id="company"></div>
             </div>
         </div>
+    </div>
+    <div class="page__sidebar">
+        <div class="sidebar">
+            <div class="sidebar__line">
+                <div class="title title_theme-green">Форма</div>
+                <div class="content__wrap" id="form"></div>
+            </div>
+            <div class="sidebar__line">
+                <div class="title title_theme-green">Список записей</div>
+                <div class="content__wrap" id="records"></div>
+            </div>
+            <div class="sidebar__line">
+                <div class="title title_theme-green">Как работает?</div>
+                <ol>
+                    <li>1. Добавить компанию</li>
+                    <li>2. Активировать компанию</li>
+                    <li>3. Ввести значение показателя</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
 
 
-        <script type="text/html" id="chartsTmp">
-            <canvas width="520px" height="300px;" class="charts_theme_green"></canvas>
-        </script>
+<script type="text/html" id="chartsTmp">
+    <canvas width="520px" height="300px;" class="charts_theme_green"></canvas>
+</script>
 
-        <script type="text/html" id="recordsTmp">
-            <ul class="list">
-                {% for(var i=0; i < data.length; i++){ %}
-                    <li class="list__item">
-                        <div class="list__text">{%=data[i].month%} {%=data[i].value%}</div>
-                        <div class="list__button list_theme_green remove-button" data-position="{%=i%}">Удалить</div>
-                    </li>
+<script type="text/html" id="recordsTmp">
+    <ul class="list">
+        {% for(var i=0; i < data.length; i++){ %}
+        <li class="list__item">
+            <div class="list__text">{%=data[i].month%} {%=data[i].value%}</div>
+            <div class="list__button list_theme_green remove-button" data-position="{%=i%}">Удалить</div>
+        </li>
+        {% }; %}
+    </ul>
+</script>
+
+<script type="text/html" id="formTmp">
+    <form action="" class="form" name="form">
+        <div class="form__row">
+            <input type="text" maxlength="3" name="value" placeholder="Значение" class="input form__elements">
+
+            <div class="form__message"></div>
+        </div>
+        <div class="form__row ">
+            <textarea cols="30" maxlength="150" name="massage" rows="5" placeholder="..."
+                      class="textarea form__elements"></textarea>
+
+            <div class="form__message"></div>
+        </div>
+        <div class="form__row">
+            <select name="month" class="select form__elements2">
+                <option selected value="Январь">Январь</option>
+                <option value="Февраль">Февраль</option>
+                <option value="Март">Март</option>
+                <option value="Апрель">Апрель</option>
+                <option value="Май">Май</option>
+                <option value="Июнь">Июнь</option>
+                <option value="Июль">Июль</option>
+                <option value="Август">Август</option>
+                <option value="Сентябрь">Сентябрь</option>
+                <option value="Октябрь">Октябрь</option>
+                <option value="Наябрь">Наябрь</option>
+                <option value="Декабрь">Декабрь</option>
+            </select>
+            <button class="button list_theme_green form__elements2">Добавить</button>
+        </div>
+    </form>
+</script>
+
+<script type="text/html" id="companyTmp">
+    <div class="company">
+        <div class="company__list">
+            <ul class="list company__list_no-boreder">
+                {% for(var key in company){ %}
+                <li class="list__item {%= currentCompany == key ? 'list__item_active' : '' %}" data-company="{%=key%}">
+                    <div class="list__text">{%=key%} / {%=company[key].length%} записей</div>
+                    <div class="list__button list_theme_green active-company">Активировать</div>
+                    <div class="list__button list_theme_green remove-company">Удалить</div>
+                </li>
                 {% }; %}
             </ul>
-        </script>
-
-        <script type="text/html" id="formTmp">
-            <form action="" class="form" name="form">
-                <div class="form__row">
-                    <input type="text" maxlength="3" name="value" placeholder="Значение" class="input form__elements">
-                    <div class="form__message"></div>
-                </div>
-                <div class="form__row ">
-                    <textarea cols="30" maxlength="150" name="massage" rows="5" placeholder="..." class="textarea form__elements"></textarea>
-                    <div class="form__message"></div>
-                </div>
-                <div class="form__row">
-                    <select name="month" class="select form__elements2">
-                        <option selected value="Январь">Январь</option>
-                        <option value="Февраль">Февраль</option>
-                        <option value="Март">Март</option>
-                        <option value="Апрель">Апрель</option>
-                        <option value="Май">Май</option>
-                        <option value="Июнь">Июнь</option>
-                        <option value="Июль">Июль</option>
-                        <option value="Август">Август</option>
-                        <option value="Сентябрь">Сентябрь</option>
-                        <option value="Октябрь">Октябрь</option>
-                        <option value="Наябрь">Наябрь</option>
-                        <option value="Декабрь">Декабрь</option>
-                    </select>
-                    <button class="button list_theme_green form__elements2">Добавить</button>
-                </div>
-            </form>
-        </script>
-
-        <script type="text/html" id="companyTmp">
-            <div class="company">
-                <div class="company__list">
-                    <ul class="list company__list_no-boreder">
-                        {% for(var key in company){ %}
-                            <li class="list__item {%= currentCompany == key ? 'list__item_active' : '' %}" data-company="{%=key%}">
-                                <div class="list__text">{%=key%} / {%=company[key].length%} записей</div>
-                                <div class="list__button list_theme_green active-company">Активировать</div>
-                                <div class="list__button list_theme_green remove-company">Удалить</div>
-                            </li>
-                        {% }; %}
-                    </ul>
-                </div>
-                <div class="company__error"></div>
-                <div class="company__add">
-                    <div class="add">
-                        <ul class="list company__list_no-boreder">
-                            <li class="list__item">
-                                <div class="list__text">
-                                    Наименование компании
-                                </div>
-                                <div class="list__text">
-                                    <input name="company" placeholder="ООО Рога и Копыта" type="text" class="input">
-                                </div>
-                                <div class="list__button list_theme_green add-company">Добавить</div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+        </div>
+        <div class="company__error"></div>
+        <div class="company__add">
+            <div class="add">
+                <ul class="list company__list_no-boreder">
+                    <li class="list__item">
+                        <div class="list__text">
+                            Наименование компании
+                        </div>
+                        <div class="list__text">
+                            <input name="company" placeholder="ООО Рога и Копыта" type="text" class="input">
+                        </div>
+                        <div class="list__button list_theme_green add-company">Добавить</div>
+                    </li>
+                </ul>
             </div>
-        </script>
+        </div>
+    </div>
+</script>
 
-        <script type="text/html" id="gistoTmp">
-            <div class="gisto">
-                <div class="gisto__row">
-                    <table class="bg">
-                        <tr class="bg__row">
-                            <td class="bg__cell">100</td>
-                            <td class="bg__cell-empty"></td>
-                        </tr>
-                        <tr class="bg__row">
-                            <td class="bg__cell">90</td>
-                            <td class="bg__cell-empty"></td>
-                        </tr>
-                        <tr class="bg__row">
-                            <td class="bg__cell">80</td>
-                            <td class="bg__cell-empty"></td>
-                        </tr>
-                        <tr class="bg__row">
-                            <td class="bg__cell">70</td>
-                            <td class="bg__cell-empty"></td>
-                        </tr>
-                        <tr class="bg__row">
-                            <td class="bg__cell">60</td>
-                            <td class="bg__cell-empty"></td>
-                        </tr>
-                        <tr class="bg__row">
-                            <td class="bg__cell">50</td>
-                            <td class="bg__cell-empty"></td>
-                        </tr>
-                        <tr class="bg__row">
-                            <td class="bg__cell">40</td>
-                            <td class="bg__cell-empty"></td>
-                        </tr>
-                        <tr class="bg__row">
-                            <td class="bg__cell">30</td>
-                            <td class="bg__cell-empty"></td>
-                        </tr>
-                        <tr class="bg__row">
-                            <td class="bg__cell">20</td>
-                            <td class="bg__cell-empty"></td>
-                        </tr>
-                        <tr class="bg__row">
-                            <td class="bg__cell">10</td>
-                            <td class="bg__cell-empty"></td>
-                        </tr>
-                        <tr class="bg__row">
-                            <td class="bg__cell_last">%</td>
-                            <td class="bg__cell-empty"></td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="gisto__row">
-                    <div class="row-wrap">
-                        <ul class="stats" style="margin-bottom:2px; width:{%=95*data.length + 150%}px">
-                            {% for(var i=0; i < data.length; i++){ %}
-                                <li class="stats__item stats_theme-green"  style="height: {%=2.8*data[i].value%}px;">
-                                    <div class="item-month">{%=data[i].month%}</div>
-                                    <div class="item-massage">{%=data[i].massage%}</div>
-                                </li>
-                            {% }; %}
-                        </ul>
-                    </div>
-                </div>
+<script type="text/html" id="gistoTmp">
+    <div class="gisto">
+        <div class="gisto__row">
+            <table class="bg">
+                <tr class="bg__row">
+                    <td class="bg__cell">100</td>
+                    <td class="bg__cell-empty"></td>
+                </tr>
+                <tr class="bg__row">
+                    <td class="bg__cell">90</td>
+                    <td class="bg__cell-empty"></td>
+                </tr>
+                <tr class="bg__row">
+                    <td class="bg__cell">80</td>
+                    <td class="bg__cell-empty"></td>
+                </tr>
+                <tr class="bg__row">
+                    <td class="bg__cell">70</td>
+                    <td class="bg__cell-empty"></td>
+                </tr>
+                <tr class="bg__row">
+                    <td class="bg__cell">60</td>
+                    <td class="bg__cell-empty"></td>
+                </tr>
+                <tr class="bg__row">
+                    <td class="bg__cell">50</td>
+                    <td class="bg__cell-empty"></td>
+                </tr>
+                <tr class="bg__row">
+                    <td class="bg__cell">40</td>
+                    <td class="bg__cell-empty"></td>
+                </tr>
+                <tr class="bg__row">
+                    <td class="bg__cell">30</td>
+                    <td class="bg__cell-empty"></td>
+                </tr>
+                <tr class="bg__row">
+                    <td class="bg__cell">20</td>
+                    <td class="bg__cell-empty"></td>
+                </tr>
+                <tr class="bg__row">
+                    <td class="bg__cell">10</td>
+                    <td class="bg__cell-empty"></td>
+                </tr>
+                <tr class="bg__row">
+                    <td class="bg__cell_last">%</td>
+                    <td class="bg__cell-empty"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="gisto__row">
+            <div class="row-wrap">
+                <ul class="stats" style="margin-bottom:2px; width:{%=95*data.length + 150%}px">
+                    {% for(var i=0; i < data.length; i++){ %}
+                    <li class="stats__item stats_theme-green" style="height: {%=2.8*data[i].value%}px;">
+                        <div class="item-month">{%=data[i].month%}</div>
+                        <div class="item-massage">{%=data[i].massage%}</div>
+                    </li>
+                    {% }; %}
+                </ul>
             </div>
-        </script>
-    </body>
+        </div>
+    </div>
+</script>
+</body>
 </html>
+

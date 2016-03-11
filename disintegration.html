@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Charts</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="http://bootswatch.com/cerulean/bootstrap.css">
+
+    <link rel="stylesheet" href="pic/style.css">
+    <script src="pic/script.js"></script>
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="index.html">График</a>
+                </li>
+                <li class="active">
+                    <a href="disintegration.html">Распад</a>
+                </li>
+                <li>
+                    <a href="live.html">Живая природа</a>
+                </li>
+                <li>
+                    <a href="rotate.html">Поварот</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div style="margin-top: 60px;">
+    <img id="img1" src="pic/image/2.jpg" alt="">
+</div>
+<script>
+    var img = document.getElementById('img1')
+
+    img.onload = function () {
+        new ImageEffect({
+            el: this,
+            effect: 'decay',
+            density: 10
+        });
+    }
+</script>
+</body>
+</html>
+
