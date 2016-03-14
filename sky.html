@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Поварот</title>
+    <title>Облака</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="http://bootswatch.com/cerulean/bootstrap.css">
 
-    <link rel="stylesheet" href="pic/style.css">
-    <script src="pic/script.js"></script>
+    <link rel="stylesheet" href="sky/style.css">
+    <script src="sky/animate.js"></script>
 </head>
 <body>
 <div class="navbar navbar-default navbar-fixed-top">
@@ -30,30 +30,19 @@
                 <li>
                     <a href="live.html">Живая природа</a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="rotate.html">Поварот</a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="sky.html">Облака</a>
                 </li>
             </ul>
         </div>
     </div>
 </div>
-<div style="margin-top: 60px;">
-    <img id="img1" src="pic/image/2.jpg" alt="">
-</div>
+<div id="container"></div>
 <script>
-    var img = document.getElementById('img1')
 
-    img.onload = function () {
-        new ImageEffect({
-            el: this,
-            effect: 'rotate',
-            density: 10,
-            animate: true
-        });
-    }
 </script>
 </body>
 </html>

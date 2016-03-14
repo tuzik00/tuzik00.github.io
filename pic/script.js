@@ -859,8 +859,7 @@
             try {
                 imgs = Array.prototype.slice.call(this.img);
             } catch (e) {
-                console.error(new Error('Элемент не найден!'));
-                return;
+                throw new Error('Элемент не найден!');
             }
 
             if (imgs.length) {

@@ -1,0 +1,89 @@
+
+
+var Rain = (function () {
+
+    var Rain = function (left, top) {
+        this.left = left + 50;
+        this.top = top + 120;
+        this.el = this.createElements();
+
+        this.activate();
+    };
+
+    Rain.prototype.activate = function () {
+        var that = this;
+        var distance = win.height - this.top;
+
+        if(distance < 0) distance = 0;
+    };
+
+    Rain.prototype.updateStyle = function () {
+        this.el.style.top = this.top + 'px';
+        this.el.style.left = this.left + 'px';
+    };
+
+    Rain.prototype.createElements = function () {
+        var rainCont = document.createElement('div');
+        rainCont.className = 'rain';
+
+        while (--rainDensity) {
+            var rain = document.createElement('span');
+            rain.className = 'rain__item';
+            rainCont.appendChild(rain)
+        }
+
+        return rainCont;
+    };
+
+    return Rain;
+}());
+
+
+var Cloud = (function () {
+    var zIndex = 0;
+
+    var Cloud = function (options) {
+        this.options = options || (options = {});
+
+        this.el = this.create();
+        this.left = options.left;
+        this.top = options.top;
+
+        this.move();
+    };
+
+    Cloud.prototype.rain = function () {
+        setInterval(function(){
+        var rain = new Rain(this.left, this.top);
+        console.log(rain)
+        }.bind(this), 1000)
+
+    };
+
+    Cloud.prototype.create = function () {
+        var wrap = this.createElement('cloud');
+        var head = this.createElement('cloud__head');
+        var body = this.createElement('cloud__body');
+
+        wrap.style.zIndex = ++zIndex;
+
+        wrap.appendChild(head);
+        wrap.appendChild(body);
+
+        return wrap;
+    };
+
+    Cloud.prototype.createElement = function (className) {
+        var element = document.createElement('div');
+        element.className = className;
+
+        return element;
+    };
+
+    Cloud.prototype.move = function () {
+        this.el.style.left = this.left + 'px';
+        this.el.style.top = this.top + 'px';
+    };
+
+    return Cloud;
+}());
