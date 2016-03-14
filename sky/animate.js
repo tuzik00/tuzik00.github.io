@@ -40,9 +40,10 @@
 
     var Rain = (function () {
 
-        var Rain = function (left, top) {
+        var Rain = function (left, top, zIndex) {
             this.left = left + 50;
             this.top = top + 120;
+            this.zIndex = zIndex;
             this.delete = false;
         };
 
@@ -106,7 +107,7 @@
             this.top = getRandomInt(0, (win.h - CLOUDS_HEIGHT));
             this.velo = Math.random() * VELO;
             this.progressBar = Object.create(ProgressBar);
-
+            this.zIndex = ++zIndex;
             this.rainReady = false;
             this.rainWait = false;
             this.rainLoad = 0;
@@ -118,7 +119,7 @@
             var head = this.createElement('cloud__head');
             var body = this.createElement('cloud__body');
 
-            wrap.style.zIndex = ++zIndex;
+            wrap.style.zIndex =  this.zIndex;
 
             wrap.appendChild(head);
             wrap.appendChild(body);
@@ -152,7 +153,7 @@
             var count = 0;
             var timer = setInterval(function () {
                 if (count < TIME_RAIN) {
-                    var rain = new Rain(this.left, this.top);
+                    var rain = new Rain(this.left, this.top,  this.zIndex);
                     SKY_objects.add(rain);
                     container.appendChild(rain.create());
 
