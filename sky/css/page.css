@@ -1,0 +1,15 @@
+html{
+    height: 100%;
+}
+
+#container{
+    height: 100%;
+}
+
+.page {
+    background: rgba(90, 187, 255, 0.49);
+    overflow: hidden;
+    position: relative;
+    height: 100%;
+}
+

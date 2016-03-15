@@ -1,0 +1,12 @@
+.rain {
+    position: absolute;
+    width: 300px;
+}
+
+.rain__item {
+    display: inline-block;
+    width: 1px;
+    height: 4px;
+    background: #000;
+    margin-left: 14px;
+}

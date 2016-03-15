@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><title>Живая природа</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-
     <link rel="stylesheet" href="http://bootswatch.com/cerulean/bootstrap.css">
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
 </head>
 <body>
 <div class="navbar navbar-default navbar-fixed-top">
@@ -18,25 +20,42 @@
         </div>
         <div class="navbar-collapse collapse" id="navbar-main">
             <ul class="nav navbar-nav">
+                <li>
+                    <a href="../index.html">Главная</a>
+                </li>
+                <li>
+                    <a href="disintegration.html">Распад</a>
+                </li>
                 <li class="active">
-                    <a href="index.html">Главная</a>
+                    <a href="live.html">Живая природа</a>
                 </li>
                 <li>
-                    <a href="pic/disintegration.html">Распад</a>
+                    <a href="rotate.html">Поварот</a>
                 </li>
                 <li>
-                    <a href="pic/live.html">Живая природа</a>
-                </li>
-                <li>
-                    <a href="pic/rotate.html">Поварот</a>
-                </li>
-                <li>
-                    <a href="sky/index.html">Облака</a>
+                    <a href="../sky/index.html">Облака</a>
                 </li>
             </ul>
         </div>
     </div>
 </div>
+<div style="margin-top: 60px;">
+    <img id="img1" src="image/2.jpg" alt="">
+</div>
+<script>
+
+    var img = document.getElementById('img1');
+
+    img.onload = function () {
+        new ImageEffect({
+            el: this,
+            effect: 'live',
+            density: 50
+        });
+    }
+
+
+</script>
 </body>
 </html>
 
