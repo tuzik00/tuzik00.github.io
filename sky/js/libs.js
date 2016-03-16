@@ -38,3 +38,13 @@ function bind(fn, contex) {
         return fn.apply(contex, arguments);
     }
 }
+
+function inherit(child, parent){
+    var surogat = function(){};
+
+    surogat.prototype = parent.prototype;
+    child.super = parent;
+    child.prototype = new surogat;
+    child.prototype.constructor = child;
+
+}

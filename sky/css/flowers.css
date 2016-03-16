@@ -1,0 +1,156 @@
+.cactus {
+    z-index: 1000;
+    background: linear-gradient(to left, #10ff19, #10bc19);
+    position: absolute;
+    border-radius: 50px 50px 0 0;
+    width: 15px;
+    height: 100px;
+}
+
+.cactus__thorn1 {
+    position: absolute;
+    background: linear-gradient(to bottom, #10ff19, #10bc19);
+    width: 11px;
+    height: 30px;
+    right: 43px;
+    top: 20px;
+    border-radius: 40px;
+    transform: rotate(-9deg);
+}
+
+.cactus__thorn2 {
+    position: absolute;
+    background: linear-gradient(to bottom, #10ff19, #10bc19);
+    width: 11px;
+    height: 30px;
+    left: 43px;
+    top: 20px;
+    border-radius: 40px;
+    transform: rotate(9deg);
+}
+
+.cactus__thorn3 {
+    position: absolute;
+    background: linear-gradient(to top, #10ff19, #10bc19);
+    width: 40px;
+    height: 10px;
+    right: 13px;
+    top: 50px;
+    transform: rotate(18deg);
+    border-radius: 50px 15px 0 50px;
+}
+
+.cactus__thorn4 {
+    position: absolute;
+    background: linear-gradient(to top, #10ff19, #10bc19);
+    width: 40px;
+    height: 10px;
+    left: 13px;
+    top: 50px;
+    transform: rotate(-18deg);
+    border-radius: 50px 15px 0 50px;
+}
+
+/*ROSE*/
+
+.rose {
+    z-index: 1000;
+    margin-left: 82px;
+    position: absolute;
+    transform: rotate(357deg) scale(1, 1.2);
+    -webkit-transform: rotate(357deg) scale(1, 1.2);
+}
+
+.rose__petalbottomright, .rose__petalbottomleft, .rose__petaltopcenter {
+    background: #fe3846;
+    background: linear-gradient(top, #FE3846, #ae2c2c);
+    border: 1px solid #000;
+    box-shadow: 1px 1px 4px #888888;
+}
+
+.rose__petalbottomright {
+    position: absolute;
+    top: 0;
+    width: 15px;
+    height: 30px;
+    border-top-right-radius: 74px;
+    border-bottom-left-radius: 56px;
+    transform: rotate(355deg);
+}
+
+.rose__petalbottomleft {
+    position: absolute;
+    top: 0;
+    margin-left: 11px;
+    width: 15px;
+    height: 30px;
+    border-top-left-radius: 74px;
+    border-bottom-right-radius: 46px;
+    transform: rotate(12deg);
+}
+
+.rose__petaltopcenter {
+    margin-left: 6px;
+    width: 15px;
+    height: 15px;
+    border-top-left-radius: 74px;
+    transform: rotate(50deg);
+}
+
+.rose__stem {
+    position: absolute;
+    margin-left: 8px;
+    height: 68px;
+    margin-top: 28px;
+    background: linear-gradient(to left, #0ca20f, #179811);
+    width: 5px;
+}
+
+.rose__centerleaf {
+    margin-top: 120px;
+    margin-left: -28px;
+    border-bottom-right-radius: 38px;
+    border-top-left-radius: 32px;
+}
+
+
+/*TREE*/
+
+.tree {
+    z-index: 1000;
+    width: 120px;
+    position: absolute;
+}
+
+.tree__layer,
+.tree__log {
+    margin: 0 auto;
+}
+
+.tree__layer {
+    width: 0;
+    height: 0;
+    border-left: 40px solid transparent;
+    border-right: 40px solid transparent;
+    border-bottom: 60px solid green;
+}
+
+.tree__layer_2 {
+    margin-top: -30px;
+    border-left-width: 50px;
+    border-right-width: 50px;
+    border-bottom-width: 80px;
+}
+
+.tree__layer_3 {
+    margin-top: -50px;
+    border-left-width: 60px;
+    border-right-width: 60px;
+    border-bottom-width: 100px;
+}
+
+.tree__log {
+    width: 20px;
+    height: 30px;
+    background-color: saddlebrown;
+}

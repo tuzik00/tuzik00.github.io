@@ -1,14 +1,15 @@
 var Rain = (function () {
-    var indentLeft = 50,
-        indentTop = 120;
+    var indentLeft = 45,
+        indentTop = 108;
 
-    var Rain = function (dx, dy, zIndex) {
+    var Rain = function (x, y, zIndex) {
         this.el = null;
-        this.dx = dx + indentLeft;
-        this.dy = dy + indentTop;
+        this.x = x + indentLeft;
+        this.y = y + indentTop;
         this.dt = 0.4;
-        this.velo = 1;
-        this.accel = 1;
+        this.velo = 0;
+        this.force = 0;
+        this.mass = 3;
         this.zIndex = zIndex;
         this.removed = false;
 
@@ -18,7 +19,7 @@ var Rain = (function () {
     Rain.prototype.initialize = function () {
         this.create();
 
-        SYS_collisionManager.add('Rain', this, this.collide);
+        Core.collisionManager.add('Rain', this, this.collide);
     };
 
     Rain.prototype.create = function () {
@@ -35,14 +36,30 @@ var Rain = (function () {
 
     };
 
+    Rain.prototype.calcForce = function () {
+        this.force = this.mass * GRAVITY - RESISTANCE * this.velo;
+    };
+
+    Rain.prototype.updateAccel = function () {
+        this.acc = this.force / this.mass;
+    };
+
+    Rain.prototype.updateVelo = function () {
+        this.velo = this.velo + this.acc * this.dt;
+    };
+
     Rain.prototype.move = function () {
-        this.dy += this.velo * this.dt;
+        this.y = this.y + this.velo * this.dt;
+
+        this.calcForce();
+        this.updateAccel();
+        this.updateVelo();
         this.updateStyle();
     };
 
     Rain.prototype.updateStyle = function () {
-        this.el.style.top = this.dy + 'px';
-        this.el.style.left = this.dx + 'px';
+        this.el.style.top = this.y + 'px';
+        this.el.style.left = this.x + 'px';
     };
 
     Rain.prototype.collide = function () {

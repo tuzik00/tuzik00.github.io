@@ -1,23 +1,20 @@
-var processor = function () {
-    var objectsList = [],
-        addedItems = [];
+var processor = {
+    _objectsList: [],
+    _addedItems: [],
+    add: function (object) {
+        this._addedItems.push(object)
+    },
+    process: function () {
+        var newProcessList = [],
+            len = this._objectsList.length;
 
-    return {
-        add: function (object) {
-            addedItems.push(object)
-        },
-        process: function () {
-            var newProcessList = [],
-                len = objectsList.length;
-
-            for (var i = 0; i < len; i++) {
-                if (!objectsList[i].removed) {
-                    objectsList[i].move();
-                    newProcessList.push(objectsList[i]);
-                }
+        for (var i = 0; i < len; i++) {
+            if (!this._objectsList[i].removed) {
+                this._objectsList[i].move();
+                newProcessList.push(this._objectsList[i]);
             }
-            objectsList = newProcessList.concat(addedItems);
-            addedItems = [];
         }
+        this._objectsList = newProcessList.concat(this._addedItems);
+        this._addedItems = [];
     }
 };

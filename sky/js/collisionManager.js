@@ -1,54 +1,50 @@
-var collisionManager = function () {
-    var listIndex = 0,
-        checkListIndex = 0,
-        grid = [],
-        checkList = {};
-
-    var checkCollisions = function (obj1, obj2) {
+var collisionManager = {
+    _checkListIndex: 0,
+    _checkList: {},
+    _checkCollisions: function (obj1, obj2) {
         var XColl = false;
         var YColl = false;
 
-        if ((obj1.dx <= obj2.dx)) XColl = true;
-        if ((obj1.dy <= obj2.dy + 15)) YColl = true;
+        if ((obj1.x <= obj2.x)) XColl = true;
+        if ((obj1.y <= obj2.y + 15)) YColl = true;
 
         if (XColl & YColl) return true;
-    };
+    },
+    add: function (colliderFlag, obj, callback) {
+        var checkIndex;
 
-    return {
-        add: function (colliderFlag, obj, callback) {
-            var list, indexStr = '' + listIndex++,
-                checkIndex;
+        var colliderObj = {
+            colliderFlag: colliderFlag,
+            colliderObj: obj,
+            callback: bind(callback, obj)
+        };
 
-            var colliderObj = {
-                colliderFlag: colliderFlag,
-                colliderObj: obj,
-                callback: bind(callback, obj)
-            };
+        checkIndex = '' + this._checkListIndex++;
+        this._checkList[checkIndex] = colliderObj;
 
-            checkIndex = '' + checkListIndex++;
-            checkList[checkIndex] = colliderObj;
+    },
+    checkCollisions: function () {
+        for (var idx1 in this._checkList) {
+            if (this._checkList[idx1].hasOwnProperty('colliderFlag')) {
+                for (var idx2 = idx1 + 1 in this._checkList) {
+                    if (this._checkList[idx2] && this._checkList[idx1]) {
+                        if (this._checkList[idx1].colliderFlag !== this._checkList[idx2].colliderFlag) {
+                            if (this._checkCollisions(this._checkList[idx1].colliderObj, this._checkList[idx2].colliderObj)) {
+                                this._checkList[idx1].callback();
+                                this._checkList[idx2].callback();
 
-        },
-        checkCollisions: function () {
+                                if (this._checkList[idx2].colliderObj.hasOwnProperty('removed')) {
+                                    delete this._checkList[idx2];
+                                }
 
-            if(listIndex < 2) return;
-
-            for(var idx in checkList){
-                for(var idx2 = idx+1 in checkList){
-                    if (checkList[idx].colliderFlag == checkList[idx2].colliderFlag) continue;
-
-                    if (checkList[idx].removed) {
-                        delete checkList[idx];
-                    }
-
-                    if (checkCollisions(checkList[idx].colliderObj, checkList[idx2].colliderObj)) {
-                        checkList[idx].callback();
-                        checkList[idx2].callback();
+                                if (this._checkList[idx1].colliderObj.hasOwnProperty('removed')) {
+                                    delete this._checkList[idx1];
+                                }
+                            }
+                        }
                     }
                 }
             }
-
-            console.log(Object.keys(checkList).length)
         }
     }
 };
