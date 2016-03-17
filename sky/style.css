@@ -12,9 +12,6 @@ html, body {
     z-index: 9999;
 }
 
-
-
-
 #container {
     height: 100%;
 }
@@ -276,3 +273,37 @@ html, body {
     z-index: 10;
     box-shadow: 0 10px 26px -10px rgba(0, 0, 0, .2);
 }
+
+.southPark__item1 {
+    background: url("1.png") no-repeat center;
+    width: 70px;
+    height: 80px;
+    position: absolute;
+    background-size: 52px;
+}
+
+.southPark__item2 {
+    background: url("2.png") no-repeat center;
+    width: 70px;
+    height: 80px;
+    position: absolute;
+    background-size: 58px;
+}
+
+.southPark__item3 {
+    background: url("3.png") no-repeat center;
+    width: 70px;
+    height: 80px;
+    position: absolute;
+    background-size: 70px;
+}
+
+.southPark__item4 {
+    background: url("4.png") no-repeat center;
+    width: 70px;
+    position: absolute;
+    height: 80px;
+    background-size: 146px;
+}
+
+

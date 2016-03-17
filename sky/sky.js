@@ -4,15 +4,14 @@
     var GRAVITY = 6;
     var RESISTANCE = 0.5;
     var CLOUDS_WIDTH = 400;
-    var CLOUDS_HEIGHT = 120;
     var RAIN_STACK = 150;
+    var RAIN_TIME = 0.7;
     var EARTH_HEIGHT = 100;
     var PROGRESS_BAR_WIDTH = 16;
     var WINDOW_WIDTH = window.innerWidth;
     var WINDOW_HEIGHT = window.innerHeight;
     var container;
     var zIndex = 0;
-
 
     var ProgressBar = {
         create: function () {
@@ -95,14 +94,20 @@
     var Cloud = createClass(Obj, {
         _rainReady: false,
         _rainAmount: 0,
+        isRainPaused: false,
         initialize: function (options) {
             this.x = options.x;
             this.y = options.y;
             this.velo = options.velo;
             this.zIndex = ++zIndex;
             this.dt = 0.4;
-            this._rainRandomValue = Math.random() * 0.5;
+
+            this._rainRandomValue = Math.random() * RAIN_TIME;
             this.progressBar = Object.create(ProgressBar);
+
+            PubSub.subscribe('rainPaused', this.rainPaused.bind(this));
+            PubSub.subscribe('rainResume', this.rainResume.bind(this));
+
         },
         create: function () {
             var wrap, head, body;
@@ -120,8 +125,14 @@
 
             return wrap;
         },
+        rainResume: function () {
+            this.isRainPaused = false;
+        },
+        rainPaused: function () {
+            this.isRainPaused = true;
+        },
         _rainAccumulate: function () {
-            if (!this._rainReady) {
+            if (!this._rainReady && !this.isRainPaused) {
                 if (this.getRainAmount() >= 100) {
                     this._rainReady = true;
                     this._rainStart();
@@ -256,6 +267,18 @@
         }
     });
 
+    var itemNumb = 0;
+    var SouthPark = createClass(Flower, {
+        create: function () {
+            this.el = createElement('div', 'southPark__item' + itemNumb++, {
+                left: this.x + 'px',
+                top: this.y - 80 + 'px'
+            });
+
+            return this.el;
+        }
+    });
+
 
     var FlowerFactory = (function () {
         var FlowerFactory = function () {
@@ -270,7 +293,8 @@
         FlowerFactory.prototype = {
             cactus: Cactus,
             rose: Rose,
-            tree: Tree
+            tree: Tree,
+            southPark: SouthPark
         };
 
         return FlowerFactory;
@@ -286,11 +310,9 @@
             this._rainCount = 0;
             this._droughtIndex = 1;
             this._flowerIndex = 0;
-            this.flowerName = {'10': 'cactus', '5': 'rose', '2': 'tree'};
+            this.flowerName = {'9': 'cactus', '5': 'rose', '2': 'tree', '0': 'southPark'};
             this.flowersList = [];
             this.propgressBar = Object.create(ProgressBar);
-
-            this._createFlowers('cactus');
 
             Core.collisionManager.add('Earth', this, this.collide);
         },
@@ -312,6 +334,7 @@
         },
 
         _createFlowers: function (name) {
+
             this._clearFlowers();
 
             for (var i = 0; i < this.plantingDensity; i++) {
@@ -336,9 +359,13 @@
             var flowerIndex = ('' + this.getDroughtIndex() % 1)[2];
             var flowerName = this.flowerName[flowerIndex];
 
+            if (flowerIndex == '1') PubSub.publish('rainPaused');
+            if (flowerIndex == '9') PubSub.publish('rainResume');
+
             if (flowerIndex && this._flowerIndex !== flowerIndex && flowerName) {
                 this._createFlowers(flowerName);
                 this._flowerIndex = flowerIndex;
+                console.log(   this._flowerIndex)
             }
         },
         getRainCount: function () {
@@ -473,6 +500,23 @@
             }
         }
     };
+
+
+    var PubSub = {
+        handlers: {},
+        subscribe: function (event, handler) {
+            if (this.handlers[event] === undefined)  this.handlers[event] = [];
+            this.handlers[event].push(handler);
+        },
+        publish: function (event) {
+            if (this.handlers[event] === undefined) return;
+            var i = 0, len = this.handlers[event].length;
+            for (i; i < len; i++) {
+                this.handlers[event][i](arguments[i + 1]);
+            }
+        }
+    };
+
 
     var Core = {
         timer: timeInfo(40),
