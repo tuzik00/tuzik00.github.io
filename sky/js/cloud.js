@@ -19,7 +19,7 @@ var Cloud = (function () {
     };
 
     Cloud.prototype.create = function () {
-        var wrap, head, boy;
+        var wrap, head, body;
 
         wrap = this.el = createElement('div', 'cloud', {
             zIndex: this.zIndex,
@@ -28,10 +28,10 @@ var Cloud = (function () {
         });
 
         head = createElement('div', 'cloud__head');
-        boy = createElement('div', 'cloud__body');
+        body = createElement('div', 'cloud__body');
 
         wrap.appendChild(head);
-        wrap.appendChild(boy);
+        wrap.appendChild(body);
         wrap.appendChild(this.progressBar.create());
 
         return wrap;
