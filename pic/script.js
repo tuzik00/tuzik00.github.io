@@ -482,7 +482,7 @@
             this.animate.stop = function () {
                 setTimeout(function () {
                     cancelAnimationFrame(requestId);
-                }, 3000)
+                }, 1000)
             };
 
             return (function draw(time) {
