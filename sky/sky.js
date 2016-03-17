@@ -242,7 +242,7 @@
                     ++count;
                 } else {
                     clearInterval(timer);
-                    setTimeout(this._rainStop.bind(this), getRandomInt(5000, 10000));
+                    this._rainStop.bind(this)
 
                     this.setRainAmount(0);
                 }
