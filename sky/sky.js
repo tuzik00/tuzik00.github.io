@@ -4,8 +4,8 @@
     var GRAVITY = 6;
     var RESISTANCE = 0.5;
     var CLOUDS_WIDTH = 400;
-    var RAIN_STACK = 3150;
-    var RAIN_TIME = 3.7;
+    var RAIN_STACK = 150;
+    var RAIN_TIME = 0.7;
     var EARTH_HEIGHT = 100;
     var PROGRESS_BAR_WIDTH = 16;
     var WINDOW_WIDTH = window.innerWidth;
