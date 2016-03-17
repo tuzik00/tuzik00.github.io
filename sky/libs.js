@@ -113,12 +113,38 @@ function bind(fn, contex) {
     }
 }
 
-function inherit(child, parent) {
-    var surogat = function () {
+function createClass(Parent, props) {
+    var Child, key, Surrogate = function () {};
+
+    if (typeof props == 'undefined') {
+        props = Parent;
+        Parent = function () {
+        };
+        Parent.prototype = props;
+    }
+
+    Child = function () {
+        if (Child.super && Child.super.hasOwnProperty('initialize')) {
+            Child.super.initialize.apply(this, arguments);
+        }
+
+        if (Child.prototype && Child.prototype.hasOwnProperty('initialize')) {
+            Child.prototype.initialize.apply(this, arguments);
+        }
+
     };
 
-    surogat.prototype = parent.prototype;
-    child.super = parent;
-    child.prototype = new surogat;
-    child.prototype.constructor = child;
+    Surrogate.prototype = Parent.prototype;
+
+    Child.prototype = new Surrogate();
+    Child.super = Parent.prototype;
+    Child.prototype.constructor = Child;
+
+    for (key in props) {
+        if (props.hasOwnProperty(key)) {
+            Child.prototype[key] = props[key];
+        }
+    }
+
+    return Child;
 }
