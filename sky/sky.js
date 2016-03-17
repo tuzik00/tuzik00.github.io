@@ -242,8 +242,7 @@
                     ++count;
                 } else {
                     clearInterval(timer);
-                    this._rainStop.bind(this)
-
+                    this._rainStop.bind(this);
                     this.setRainAmount(0);
                 }
             }.bind(this), 50)
