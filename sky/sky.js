@@ -359,7 +359,7 @@
             var flowerIndex = ('' + this.getDroughtIndex() % 1)[2];
             var flowerName = this.flowerName[flowerIndex];
 
-            if (flowerIndex == '1') PubSub.publish('rainPaused');
+            if (flowerIndex == '0') PubSub.publish('rainPaused');
             if (flowerIndex == '9') PubSub.publish('rainResume');
 
             if (flowerIndex && this._flowerIndex !== flowerIndex && flowerName) {
